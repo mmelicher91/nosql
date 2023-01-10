@@ -1,0 +1,49 @@
+{% extends "sablona.html" %}
+
+{% block podnazev %}
+Přehled čekajících 
+{% endblock %}
+
+{% block obsah_stranky %}
+<h2>Seznam klientů čekající na vyšetření</h2>
+<form action="/cekajici" method="POST">
+    <table>
+        <thead class="cerveni">
+            <tr>
+                <th>Jméno</th>
+                <th>Příjmení</th>
+                <th>Krevní skupina</th>
+                <th>Rh faktor</th>
+                <th>Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for xko in Jednotka %}
+                {% if xko.sluzebnik == 0 %}
+                <tr>
+                    <td>{{ xko.jmeno }}</td>
+                    <td>{{ xko.prijmeni }}</td>
+                    <td>{{ xko.skupina }}</td>
+                    <td>{{ xko.rh_fakt }}</td>
+                    <td><form action="/cekajici" method="post">
+                        <input type="hidden" name="pacient" value="{{ xko.id }}">
+                        <button type="submit">Vyšetřit</button></form></td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+  
+</form>
+
+{% if vzkaz %}
+<p style="color:green">{{ vzkaz }}</p>
+{% endif %}
+
+
+{% endblock %}
+
+
+{% block patka %}
+Nic
+{% endblock %}

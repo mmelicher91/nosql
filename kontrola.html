@@ -1,0 +1,71 @@
+{% extends "sablona.html" %}
+
+{% block podnazev %}
+Kontrola 
+{% endblock %}
+
+{% block obsah_stranky %}
+<h2>Vyšetření pacienta</h2> 
+
+<table>
+    <thead class="zluti">
+<tr> 
+    <td>{{ jmeno }}</td>
+    <td>{{ prijmeni }}</td>
+    <td>{{ skupina }}</td>
+    <td>{{ rh_fakt }}</td>
+    <td>{{ typ_odberu }}</td>
+    <td>{{ sarze }}</td>
+</tr></thead>
+</table>
+<hr/>
+<form action="/kontrola" method="POST">
+    <table class="inputni">
+        <tr>
+            <td><label for="objem">Požadované množství: </label></td>
+            <td><input type="text" name="objem" required></td>
+        </tr>
+        <tr>
+            <td><label for="tuky_ok">Tuky v krvi: </label></td>
+            <td><input type="radio" name="tuky_ok" value="nok" checked="checked"> Špatný</td>
+                <td><input type="radio" name="tuky_ok" value="ok"> V pořádku</td>
+            
+        </tr>
+        <tr>
+            <td><label for="tlak_ok">Krevní tlak: </label></td>
+            <td><input type="text" name="tlak" required></td>
+        </tr>
+        <tr>
+            <td>Hodnocení: </td>
+            <td><input type="radio" name="tlak_ok" value="nok" checked="checked">Špatný</td>
+            <td><input type="radio" name="tlak_ok" value="ok"> V pořádku</td>
+        </tr>
+        <tr>
+            <td><h3>Závěr prohlídky:</h3></td>
+            
+        </tr>
+        <tr>
+            <td><label for="zaver_ok">Závěr </label></td>
+            <td><input type="radio" name="zaver_ok" value="nok" checked="checked"> Nevyhovuje</td>
+            <td><input type="radio" name="zaver_ok" value="ok"> Vyhovuje</td>
+        </tr>
+        <tr><input type="hidden" name="zaz_id" value="{{ zaz_id }}">
+            <td><button type="submit" class="formu">Vlož záznam</button></td>
+        </tr>
+    </table>
+       
+   
+    
+</form>
+
+
+
+{% if vzkaz %}
+<p style="color:green">{{ vzkaz }}</p>
+{% endif %}
+
+{% endblock %}
+
+{% block patka %}
+ID Dokumentu: {{ zaz_id }}
+{% endblock %}

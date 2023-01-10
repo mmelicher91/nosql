@@ -1,0 +1,96 @@
+{% extends "sablona.html" %}
+
+{% block podnazev %}
+Úvod
+{% endblock %}
+
+{% block obsah_stranky %}
+
+<section>
+    <article>
+        <h2>NoSQL databáze odběrů krevních složek v mongoDB</h2>
+    </article>
+    <article>
+  
+    <h3>Čeká na vyšetření:</h3>
+        <table>
+            <thead  class="cerveni">
+                <tr>
+                    <th>Jméno</th>
+                    <th>Příjmení</th>
+                    <th>Krevní skupina</th>
+                    <th>Rh faktor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for xko in Jednotka %}
+                    {% if xko.sluzebnik == 0 %}
+                    <tr>
+                        <td>{{ xko.jmeno }}</td>
+                        <td>{{ xko.prijmeni }}</td>
+                        <td>{{ xko.skupina }}</td>
+                        <td>{{ xko.rh_fakt }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Vyšetření - posláni na odběr</h3>
+        <table >
+            <thead class="zeleni">
+                <tr>
+                    <th>Jméno</th>
+                    <th>Příjmení</th>
+                    <th>Krevní skupina</th>
+                    <th>Rh faktor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for xko in Jednotka %}
+                    {% if xko.sluzebnik == 1 %}
+                    <tr>
+                        <td>{{ xko.jmeno }}</td>
+                        <td>{{ xko.prijmeni }}</td>
+                        <td>{{ xko.skupina }}</td>
+                        <td>{{ xko.rh_fakt }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+      
+        <h3>Vyřazení</h3>
+        <table>
+            <thead  class="cerni">
+                <tr>
+                    <th>Jméno</th>
+                    <th>Příjmení</th>
+                    <th>Krevní skupina</th>
+                    <th>Rh faktor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for xko in Jednotka %}
+                    {% if xko.sluzebnik == 2 %}
+                    <tr>
+                        <td>{{ xko.jmeno }}</td>
+                        <td>{{ xko.prijmeni }}</td>
+                        <td>{{ xko.skupina }}</td>
+                        <td>{{ xko.rh_fakt }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+</article>
+</section>
+
+{% endblock %}        
+
+    
+    
+    {% block patka %}
+    Nic
+    {% endblock %}
+

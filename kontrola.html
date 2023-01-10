@@ -1,0 +1,35 @@
+{% extends "sablona.html" %}
+
+{% block podnazev %}
+Kontrola 
+{% endblock %}
+
+{% block obsah_stranky %}
+now = datetime.now()
+sarze = now.strftime("%Y%m%d%H%M%S")
+
+<form action="/kontrola" method="POST">
+    <fieldset>
+        <label for="jmeno">Jméno dárce: </label>
+        <input type="text" name="jmeno" placeholder="Zadej jméno dárce" required>
+        <label for="nazev">Příjmení dárce: </label>
+        <input type="text" name="prijmeni" placeholder="Zadej příjmení dárce" required>
+        <label for="telefon">Telefon: </label>
+        <input type="text" name="telefon" placeholder="Zadej telefon" required> <br />
+        <label for="skupina">Krevní skupina: </label>
+        <input type="text" name="skupina" placeholder="Zadej krevní skupinu" required> 
+        <label for="rh_fakt">Rh faktor: </label>
+        <input type="text" name="rh_fakt" placeholder="0 negativní; 1 pozitivní" required>
+        <label for="objem">Objem: </label>
+        <input type="text" name="objem" placeholder="Zadej odebraný objem" required> <br />
+        <label for="typ_odberu">Typ odběru: </label>
+        <input type="text" name="typ_odberu" placeholder="Zadej typ odběru" required>
+    </fieldset>
+    <button type="submit">Vlož záznam</button>
+</form>
+
+{% if vzkaz %}
+<p style="color:green">{{ vzkaz }}</p>
+{% endif %}
+
+{% endblock %}
